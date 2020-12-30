@@ -13,6 +13,7 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import CoreFoundation
 import time
 import Quartz
 from AppKit import NSSystemDefined, NSEvent
@@ -220,7 +221,7 @@ class PyKeyboardEvent(PyKeyboardEventMeta):
             self.handler,
             None)
 
-        loopsource = Quartz.CFMachPortCreateRunLoopSource(None, tap, 0)
+        loopsource = CoreFoundation.CFMachPortCreateRunLoopSource(None, tap, 0)
         self.loop = Quartz.CFRunLoopGetCurrent()
         Quartz.CFRunLoopAddSource(self.loop, loopsource, Quartz.kCFRunLoopDefaultMode)
         Quartz.CGEventTapEnable(tap, True)
